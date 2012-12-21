@@ -1,3 +1,7 @@
+Caution
+------------
+@remore has customized files(actually made them slim) ONLY UNDER apps/Sandbox folder. Except that, nothing had been changed from original BEAR.Package files.
+
 BEAR.Package
 =============================
 
