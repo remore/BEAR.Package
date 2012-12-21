@@ -28,4 +28,19 @@ class Greeting extends AbstractObject
         $this->body = "Hello, {$name}";
         return $this;
     }
+
+    /**
+     * @param string $hoge
+     *
+     * @return string
+     *
+     * @Inject
+     * @Named("hoge=mytest")
+     */
+    /*
+    public function onPost($hoge='test')
+    {
+        return $hoge;
+    }
+    */
 }

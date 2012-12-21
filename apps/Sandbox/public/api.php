@@ -27,24 +27,13 @@ use BEAR\Sunday\Web;
 use Exception;
 
 global $mode;
-
-if (PHP_SAPI == 'cli-server') {
-    if (preg_match('/\.(?:png|jpg|jpeg|gif|js|css|ico)$/', $_SERVER["REQUEST_URI"])) {
-        return false;
-    }
-}
-
-// Clear
-$app = require dirname(__DIR__) . '/scripts/clear.php';
-
-// Application
 $mode = 'Api';
 $app = require dirname(__DIR__) . '/scripts/instance.php';
 
-    // Dispatch
-    $globals = (PHP_SAPI === 'cli') ? $app->globals->get($argv) : $GLOBALS;
-    $pathInfo = isset($globals['_SERVER']['PATH_INFO']) ? $globals['_SERVER']['PATH_INFO'] : '/index';
-    $uri = (PHP_SAPI === 'cli') ? $argv[2] : 'app://self' . $pathInfo;
+// Dispatch
+$globals = (PHP_SAPI === 'cli') ? $app->globals->get($argv) : $GLOBALS;
+$pathInfo = isset($globals['_SERVER']['PATH_INFO']) ? $globals['_SERVER']['PATH_INFO'] : '/index';
+$uri = (PHP_SAPI === 'cli') ? $argv[2] : 'app://self' . $pathInfo;
 try {
     // Router
     list($method, $query) = $app->router->getMethodQuery($globals);

@@ -14,13 +14,6 @@ class CliTest extends \PHPUnit_Framework_TestCase
         $this->systemRoot = dirname(__DIR__);
     }
 
-    public function test_devWebPhp()
-    {
-        $cli = 'php ' . $this->systemRoot . '/public/web.php get /index';
-        exec($cli, $return);
-        $pos = $this->assertContains('<!DOCTYPE html>', $return, $return);
-    }
-
     public function test_devApiPhp()
     {
         $cli = 'php ' . $this->systemRoot . '/public/api.php get page://self/index';

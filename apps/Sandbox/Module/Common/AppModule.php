@@ -47,25 +47,10 @@ class AppModule extends AbstractModule
 
         // dependency binding for application
         $this->bind('BEAR\Sunday\Application\Context')->to('Sandbox\App');
-        $this->bind()->annotatedWith('greeting_msg')->toInstance('Hola');
-        $this->bind('BEAR\Resource\Renderable')->annotatedWith('hal')->to('BEAR\Sunday\Resource\View\HalRenderer')->in(
-            Scope::SINGLETON
-        );
+        //$this->bind()->annotatedWith('mytest')->toInstance('Hola');
+
         // aspect weaving for application
         $this->installTimeMessage();
-        $this->installNewPostFormValidator();
-    }
-
-    /**
-     * @Form - bind form validator
-     */
-    private function installNewPostFormValidator()
-    {
-        $this->bindInterceptor(
-            $this->matcher->subclassesOf('Sandbox\Resource\Page\Blog\Posts\Newpost'),
-            $this->matcher->annotatedWith('BEAR\Sunday\Annotation\Form'),
-            [new PostFormValidator]
-        );
     }
 
     /**
@@ -75,7 +60,7 @@ class AppModule extends AbstractModule
     {
         // time message binding
         $this->bindInterceptor(
-            $this->matcher->subclassesOf('Sandbox\Resource\App\First\Greeting\Aop'),
+            $this->matcher->subclassesOf('Sandbox\Resource\App\First\Greeting'),
             $this->matcher->any(),
             [new TimeMessage]
         );
